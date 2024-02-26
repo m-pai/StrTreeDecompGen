@@ -25,7 +25,7 @@ Function 'grow' takes a graph and returns an array of graphs each of which has a
 """
 
 function grow(graph)
-    arr = map(s -> add_neighbour(f[1:Graphs.nv(g)], s), Combinatorics. powerset(1:Int(Graphs.nv(graph))))
+    arr = map(s -> add_neighbour(graph[1:Graphs.nv(graph)], s), Combinatorics.powerset(1:Int(Graphs.nv(graph))))
 
     return arr
 end
@@ -37,7 +37,7 @@ Function 'graphsof' takes a node size and uses the above functions to return an 
 function graphsof(node_size)
     arr = []
 
-    if n == 0 
+    if node_size == 0 
         push!(arr, Graphs.Graph(0))
         return arr
     else
@@ -58,11 +58,11 @@ Function 'graphsupto' takes a node size (n) and returns all graphs on (n) or few
 function graphsupto(node_size)
     arr = []
 
-    while n>-1
-        for j in graphsupto(n)
+    while node_size > 0
+        for j in graphsof(node_size)
             push!(arr, j)
         end
-        node_size = node_size-1
+        node_size = node_size - 1
     end
 
     return arr
@@ -73,7 +73,7 @@ Function 'symref_conv' takes a node size n and returns all symmetric reflexive g
 """
 
 function symref_conv(node_size)
-    arr = map(i -> Catlab.Graphs.BasicGraphs.SymmetricReflexiveGraph(i), graphsupto(n))
+    arr = map(i -> Catlab.Graphs.BasicGraphs.SymmetricReflexiveGraph(i), graphsupto(node_size))
     
     return arr
 end

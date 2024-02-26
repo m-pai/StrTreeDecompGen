@@ -23,13 +23,13 @@ The IterTools.jl module has a 'product' function that we use to generate this.
 function prufer_gen(node_size)
     arr = []
 
-    for i in 1:node_size - 2 
+    for i in 1:(node_size - 2)
         push!(arr, 1:node_size)
     end
 
-    prod = collect(IterTools.Iterators.product(arr...))
+    arr2 = collect(IterTools.Iterators.product(arr...))
 
-    return prod
+    return arr2
 end
 
 """
@@ -57,8 +57,8 @@ end
 Because we are using the Catlab.jl module in future codes, we want to convert our trees of type Graphs.Graph to the type Catlab.Graphs.BasicGraphs.Graph. To do this, we write a function 'tree_conv' that takes in an array of trees, and returns a converted array.
 """
 
-function tree_conv(tree_arr)
-    conv_arr = map(i -> Catlab.Graphs.BasicGraphs.Graph(i), tree_arr)
+function tree_conv(node_size)
+    conv_arr = map(i -> Catlab.Graphs.BasicGraphs.Graph(i), tree_gen(node_size))
 
     return conv_arr
 end
