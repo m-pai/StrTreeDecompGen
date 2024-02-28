@@ -1,9 +1,9 @@
 using .Decompositions
 using Catlab.CategoricalAlgebra
 
-include("01-tree-gen.jl")
-include("02-graph-gen.jl")
-include("03-product.jl")
+include("tree-gen.jl")
+include("graph-gen.jl")
+include("product.jl")
 
 function decompositions(tree, bag_size)
     decomp = []
