@@ -1,4 +1,4 @@
-include("Decompositions.jl")
+using .Decompositions
 using Catlab.CategoricalAlgebra
 
 include("01-tree-gen.jl")
